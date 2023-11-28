@@ -15,8 +15,7 @@ import org.junit.runners.JUnit4
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
-import org.threeten.bp.LocalDateTime
-import org.threeten.bp.zone.ZoneRulesProvider
+import java.time.LocalDateTime
 
 @RunWith(JUnit4::class)
 class GetAllExercisesUseCaseTest {
@@ -29,8 +28,6 @@ class GetAllExercisesUseCaseTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        // Initialize the ThreeTenBP library
-        ZoneRulesProvider.getAvailableZoneIds()
         getAllExercisesUseCase = GetAllExercisesUseCase(exerciseRepository)
     }
 

@@ -13,8 +13,8 @@ import com.openclassrooms.arista.data.entity.SleepDto
 import com.openclassrooms.arista.data.entity.UserDto
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import org.threeten.bp.LocalDateTime
-import org.threeten.bp.ZoneOffset
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 
 @Database(
     entities = [UserDto::class, SleepDto::class, ExerciseDto::class],
@@ -69,6 +69,12 @@ abstract class AppDatabase : RoomDatabase() {
                 SleepDto(
                     startTime = LocalDateTime.now().minusDays(2).atZone(ZoneOffset.UTC).toInstant()
                         .toEpochMilli(), duration = 450, quality = 3
+                )
+            )
+            userDtoDao.insertUser(
+                UserDto(
+                    name = "Louis",
+                    email = "Gignac",
                 )
             )
         }

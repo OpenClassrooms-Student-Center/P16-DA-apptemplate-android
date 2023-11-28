@@ -7,7 +7,7 @@ class ExerciseRepository(private val exerciseDao: ExerciseDtoDao) {
 
     // Get all exercises
     suspend fun getAllExercises(): List<Exercise> {
-        return exerciseDao.getAllExercises().map { it.toExercise() }
+        return exerciseDao.getAllExercises().map { Exercise.fromDto(it) }
     }
 
     // Add a new exercise

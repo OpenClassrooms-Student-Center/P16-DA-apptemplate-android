@@ -1,25 +1,21 @@
 package com.openclassrooms.arista.data.entity
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.openclassrooms.arista.domain.model.Sleep
-import org.threeten.bp.Instant
-import org.threeten.bp.LocalDateTime
-import org.threeten.bp.ZoneId
 
 @Entity(tableName = "sleep")
 data class SleepDto(
-    @PrimaryKey(autoGenerate = true) var id: Long = 0,
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var id: Long = 0,
+
+    @ColumnInfo(name = "start_time")
     var startTime: Long,
+
+    @ColumnInfo(name = "duration")
     var duration: Int,
+
+    @ColumnInfo(name = "quality")
     var quality: Int
-) {
-    fun toSleep(): Sleep {
-        return Sleep(
-            LocalDateTime.ofInstant(
-                Instant.ofEpochMilli(startTime),
-                ZoneId.systemDefault()
-            ), duration, quality
-        )
-    }
-}
+)

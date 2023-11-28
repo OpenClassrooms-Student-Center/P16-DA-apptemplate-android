@@ -7,6 +7,6 @@ class SleepRepository(private val sleepDao: SleepDtoDao) {
 
     // Get all sleep records
     suspend fun getAllSleeps(): List<Sleep> {
-        return sleepDao.getAllSleeps().map { it.toSleep() }
+        return sleepDao.getAllSleeps().map { Sleep.fromDto(it) }
     }
 }

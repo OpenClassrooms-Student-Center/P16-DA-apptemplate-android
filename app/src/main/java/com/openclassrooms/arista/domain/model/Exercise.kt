@@ -1,8 +1,10 @@
 package com.openclassrooms.arista.domain.model
 
 import com.openclassrooms.arista.data.entity.ExerciseDto
-import org.threeten.bp.LocalDateTime
-import org.threeten.bp.ZoneOffset
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.ZoneOffset
 
 data class Exercise(
     val id: Long? = null,
@@ -18,5 +20,20 @@ data class Exercise(
             category = this.category.name, // Convert Enum to String
             intensity = this.intensity
         )
+    }
+
+    companion object {
+        fun fromDto(dto: ExerciseDto): Exercise {
+            return Exercise(
+                id = dto.id,
+                startTime = LocalDateTime.ofInstant(
+                    Instant.ofEpochMilli(dto.startTime),
+                    ZoneId.systemDefault()
+                ),
+                duration = dto.duration,
+                category = ExerciseCategory.valueOf(dto.category),
+                intensity = dto.intensity
+            )
+        }
     }
 }

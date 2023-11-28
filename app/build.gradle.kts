@@ -30,6 +30,9 @@ android {
         }
     }
     compileOptions {
+        // Flag to enable support for the new language APIs
+        isCoreLibraryDesugaringEnabled = true
+
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -42,19 +45,16 @@ android {
 }
 
 dependencies {
-    val room_version = "2.6.0"
+    val roomVersion = "2.6.0"
 
-    implementation("androidx.room:room-runtime:$room_version")
-    implementation("androidx.room:room-ktx:$room_version")
-    kapt("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-runtime:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
 
     //Hilt
     implementation("com.google.dagger:hilt-android:2.42")
     implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")
     kapt("com.google.dagger:hilt-android-compiler:2.42")
-
-    //DateUtils
-    implementation("com.jakewharton.threetenabp:threetenabp:1.3.1")
 
     implementation("androidx.core:core-ktx:1.7.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -66,8 +66,11 @@ dependencies {
     //Tests
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.0.0")
-    testImplementation ("org.threeten:threetenbp:1.3.1")
 
+    // SQLCipher
+    implementation("net.zetetic:android-database-sqlcipher:4.5.0")
+
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
 
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
