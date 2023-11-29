@@ -67,9 +67,6 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.0.0")
 
-    // SQLCipher
-    implementation("net.zetetic:android-database-sqlcipher:4.5.0")
-
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
 
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
