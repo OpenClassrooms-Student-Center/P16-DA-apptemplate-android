@@ -2,13 +2,17 @@ package com.openclassrooms.arista.data.repository
 
 import com.openclassrooms.arista.data.dao.ExerciseDtoDao
 import com.openclassrooms.arista.domain.model.Exercise
+import kotlinx.coroutines.flow.first
 
 class ExerciseRepository(private val exerciseDao: ExerciseDtoDao) {
 
     // Get all exercises
     suspend fun getAllExercises(): List<Exercise> {
-        return exerciseDao.getAllExercises().map { Exercise.fromDto(it) }
+        return exerciseDao.getAllExercises()
+            .first()  // Collecte la première émission du Flow
+            .map { Exercise.fromDto(it) }  // Convertit chaque DTO en Exercise
     }
+
 
     // Add a new exercise
     suspend fun addExercise(exercise: Exercise) {
